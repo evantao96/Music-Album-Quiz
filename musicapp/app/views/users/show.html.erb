@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+
+<h4> <%= @user.name + "'s Profile" %></h4>
+
+<font size=1><table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @user.tests.empty? %> 
+    <tr> 
+      <td> No tests here! </td>
+    </tr>
+    <% else %>
+    <% @user.tests.each do |test| %>
+      <tr>
+        <td><%= link_to test.name, test_path %></td>
+	<% if test.albums.empty? %>
+	<td> No albums </td>
+	<% else %>
+	<td><%= link_to 'Play', test_play_path(test) %></td>
+<% end %>
+	<% if logged_in? && session[:user_id] == @user.id %>
+	<td> <%= link_to 'Add Album', test_add_album_path(test) %> </td>
+        <td><%= link_to 'Edit', edit_test_path(test) %></td>
+        <td><%= link_to 'Delete', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table></font>
+
+<font size=1>
+<% if logged_in? && session[:user_id] == @user.id %>
+<%= link_to 'Edit Profile', edit_user_path(@user) %> | 
+<%= link_to 'Delete Profile', @user, method: :delete, data: { confirm: 'Are you sure? ' } %>
+<% end %></font>
+
+</p>
+
+

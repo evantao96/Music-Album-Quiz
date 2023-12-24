@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<font size="1">
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>High Score </th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>    
+    <% @users.order(high_score: :desc).each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+	<td><%= user.high_score %></td>
+	<td><%= link_to 'Profile', user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table></font>
+
+<br>
