@@ -1,48 +1,56 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426012052) do
-
+ActiveRecord::Schema[7.1].define(version: 2017_04_26_012053) do
   create_table "albums", force: :cascade do |t|
-    t.string   "name"
-    t.string   "artist"
+    t.string "name"
+    t.string "artist"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "albums_tests", force: :cascade do |t|
-    t.integer  "album_id"
-    t.integer  "test_id"
+    t.integer "album_id"
+    t.integer "test_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_albums_tests_on_album_id"
+    t.index ["test_id"], name: "index_albums_tests_on_test_id"
   end
 
-  add_index "albums_tests", ["album_id"], name: "index_albums_tests_on_album_id"
-  add_index "albums_tests", ["test_id"], name: "index_albums_tests_on_test_id"
+  create_table "songs_tests", force: :cascade do |t|
+    t.integer "song_id"
+    t.integer "test_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_songs_tests_on_song_id"
+    t.index ["test_id"], name: "index_songs_tests_on_test_id"
+  end
 
   create_table "tests", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
+    t.string "name"
+    t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "password_hash"
-    t.integer  "high_score"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string "name"
+    t.string "password_hash"
+    t.integer "high_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "songs_tests", "songs"
+  add_foreign_key "songs_tests", "tests"
 end

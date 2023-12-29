@@ -1,4 +1,4 @@
-class CreateSongsTests < ActiveRecord::Migration
+class CreateSongsTests < ActiveRecord::Migration[7.1]
   def change
     create_table :songs_tests do |t|
       t.references :song, index: true, foreign_key: true
