@@ -10,41 +10,32 @@ Evan Tao
 
 ## Dependencies ## 
 
-`bundler 2.5.3`
-
-`ruby 3.3.0`
-
-`rails 7.2.1`
+-`bundler 2.5.3`
+-`ruby 3.3.0`
+-`rails 7.2.1`
 
 ## Testing ## 
 
-First, run `bundle install` to install all relevant gems. 
-
-Next, run `rails s` to start the web application. 
+1. First, run `bundle install` to install all relevant gems. 
+2. Then, run `rails s` to start the web application. 
 
 ## Models ##
-Users
-Albums
-Tests
-Albums_Tests
+- Users
+- Albums
+- Tests
+- Albums_Tests
 
 ## Associations ##
 
-User has_many Tests
-Albums has_many Tests
+- User has_many Tests
+- Albums has_many Tests
 
 ## Features ##
 
-Add/Remove albums from Tests - Nested Resources
-
-Sessions and BCrypt Passwords - Log In/Out
-
-Spotify Validations
-
-Image Embed
-
-Radio Buttons
-
-Answer Checking
-
-High Scores
+- Add/Remove albums from Tests - Nested Resources
+- Sessions and BCrypt Passwords - Log In/Out
+- Spotify Validations
+- Image Embed
+- Radio Buttons
+- Answer Checking
+- High Scores
