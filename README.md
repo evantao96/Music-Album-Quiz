@@ -10,9 +10,9 @@ Evan Tao
 
 ## Dependencies ## 
 
--`bundler 2.5.3`
--`ruby 3.3.0`
--`rails 7.2.1`
+- `bundler 2.5.3`
+- `ruby 3.3.0`
+- `rails 7.2.1`
 
 ## Testing ## 
 
