@@ -30,6 +30,10 @@ gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'rest-client', '~> 2.1'
+
+gem 'mime-types', '~> 3.5', '>= 3.5.1'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

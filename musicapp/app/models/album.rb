@@ -1,4 +1,7 @@
 require 'open-uri'
+require 'rest-client'
+require 'json'
+
 
 class Album < ActiveRecord::Base
 
@@ -13,6 +16,15 @@ class Album < ActiveRecord::Base
   validate :cap_artist
 
   validate :in_spotify
+
+  grant = Base64.encode64("4426f03c25e345a0b604f2d4f19c1678:8a034e7a27e44e4ea0d520de19869f47").delete("\n")
+  respond = RestClient.post('https://accounts.spotify.com/api/token',
+                       {'grant_type' => 'client_credentials'},
+                       {"Authorization" => "Basic #{grant}"})
+  token_ext =  respond.split(',')
+  token_ext2 = token_ext[0].split(':')
+  only_token = token_ext2[1].delete_prefix('"').delete_suffix('"')
+  $header = {'Authorization': "Bearer #{only_token}"}
 
   def cap_name
     unless name.nil? || name.empty? || name[0].capitalize == name[0]
@@ -31,7 +43,7 @@ class Album < ActiveRecord::Base
     if name.nil? || name.empty?
       errors.add(:album, 'does not exist in Spotify')
     else
-      my_hash = JSON.parse(open("https://api.spotify.com/v1/search?q=#{album_search}&type=album").read)
+      my_hash = JSON.parse(RestClient.get("https://api.spotify.com/v1/search?q=#{album_search}&type=album", $header))
       if my_hash['albums']['items'].empty?
         errors.add(:album, 'does not exist in Spotify')
       end
@@ -59,7 +71,7 @@ class Album < ActiveRecord::Base
   end
 
   def spotify_uri
-    my_hash = JSON.parse(open("https://api.spotify.com/v1/search?q=#{album_search}&type=album").read)
+    my_hash = JSON.parse(RestClient.get("https://api.spotify.com/v1/search?q=#{album_search}&type=album", $header))
     p my_hash['albums']['items'][0]['images'][0]['url']
   end
 
