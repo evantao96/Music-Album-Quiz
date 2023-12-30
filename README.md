@@ -1,23 +1,48 @@
-A Rails album quiz -- test your knowledge of album covers on Spotify by creating an account, making quizzes and trying out other people's quizzes!
+# Music Album Quiz Generator #
 
-Models: 
+## About ##
+
+Test your knowledge of album covers on Spotify by creating an account, making quizzes and trying out other people's quizzes!
+
+## Contributors ## 
+
+Evan Tao 
+
+## Dependencies ## 
+
+bundler 2.5.3
+ruby 3.3.0
+rails 7.2.1
+
+## Testing ## 
+
+First, run `bundle install` to install all relevant gems. 
+
+Next, run `rails s` to start the web application. 
+
+## Models ##
 Users
 Albums
 Tests
 Albums_Tests
 
-Associations:
-User has_many Tests
-Albums many_many Tests
+## Associations ##
 
-Tests Add/Remove Albums - Nested Resources
+User has_many Tests
+Albums has_many Tests
+
+## Features ##
+
+Add/Remove albums from Tests - Nested Resources
 
 Sessions and BCrypt Passwords - Log In/Out
 
-Spotify Validations and Image Embed
+Spotify Validations
 
-Play Quizzes
+Image Embed
 
-Radio Buttons + Answer Checking
+Radio Buttons
+
+Answer Checking
 
 High Scores
